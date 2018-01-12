@@ -12,40 +12,40 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  * <p>Title:Receiver</p>
- * <p>Description: JMS½ÓÊÕÏûÏ¢</p>
+ * <p>Description: JMSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢</p>
  * <p>Company: ecar</p> 
  * @author hexiaoyun 
- * @date 2017-2-22 ÏÂÎç03:01:55
+ * @date 2017-2-22 ï¿½ï¿½ï¿½ï¿½03:01:55
 */
 public class Receiver {
-	    public static void main(String[] args) {  
-	        ConnectionFactory connectionFactory; // ConnectionFactory £ºÁ¬½Ó¹¤³§£¬JMS ÓÃËü´´½¨Á¬½Ó  
-	        Connection connection = null;      // Connection £ºJMS ¿Í»§¶Ëµ½JMS  
-	        Session session; // Session£º Ò»¸ö·¢ËÍ»ò½ÓÊÕÏûÏ¢µÄÏß³Ì    
-	        Destination destination;// Destination £ºÏûÏ¢µÄÄ¿µÄµØ;ÏûÏ¢·¢ËÍ¸øË­. 
-	        MessageConsumer  consumer ;   // MessageConsumer£ºÏûÏ¢½ÓÊÕÕß 
-	        // ¹¹ÔìConnectionFactoryÊµÀý¶ÔÏó£¬´Ë´¦²ÉÓÃActiveMqµÄÊµÏÖjar  
+	    public static void main(String[] args) {      
+	        ConnectionFactory connectionFactory; // ConnectionFactory ï¿½ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½JMS ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
+	        Connection connection = null;      // Connection ï¿½ï¿½JMS ï¿½Í»ï¿½ï¿½Ëµï¿½JMS  
+	        Session session; // Sessionï¿½ï¿½ Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ß³ï¿½    
+	        Destination destination;// Destination ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ä¿ï¿½Äµï¿½;ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Í¸ï¿½Ë­. 
+	        MessageConsumer  consumer ;   // MessageConsumerï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	        // ï¿½ï¿½ï¿½ï¿½ConnectionFactoryÊµï¿½ï¿½ï¿½ï¿½ó£¬´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ActiveMqï¿½ï¿½Êµï¿½ï¿½jar  
 	        connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER, ActiveMQConnection.DEFAULT_PASSWORD, "tcp://localhost:61616");  
-	        try { // ¹¹Ôì´Ó¹¤³§µÃµ½Á¬½Ó¶ÔÏó  
+	        try { // ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½  
 	            connection = connectionFactory.createConnection();  
-	            // Æô¶¯Á¬½Ó
+	            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	            connection.start();  
-	            // »ñÈ¡²Ù×÷Á¬½Ó  
+	            // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);  
-	            // »ñÈ¡session×¢Òâ²ÎÊýÖµxingbo.xu-queueÊÇÒ»¸ö·þÎñÆ÷µÄqueue£¬ÐëÔÚÔÚActiveMqµÄconsoleÅäÖÃ  
+	            // ï¿½ï¿½È¡session×¢ï¿½ï¿½ï¿½ï¿½ï¿½Öµxingbo.xu-queueï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½queueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ActiveMqï¿½ï¿½consoleï¿½ï¿½ï¿½ï¿½  
 	            destination = session.createQueue("FirstQueue");  
-	            // µÃµ½ÏûÏ¢Éú³ÉÕß¡¾·¢ËÍÕß¡¿  
+	            // ï¿½Ãµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ß¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¡ï¿½  
 	            consumer = session.createConsumer(destination);  
 	            while(true){
-	            	//ÉèÖÃ½ÓÊÕÕß½ÓÊÕÏûÏ¢µÄÊ±¼ä£¬ÎªÁË±ãÓÚ²âÊÔ£¬ÕâÀï¶¨Îª100s
+	            	//ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê±ï¿½ä£¬Îªï¿½Ë±ï¿½ï¿½Ú²ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¶¨Îª100s
 	            	TextMessage message = (TextMessage) consumer.receive(90000000);
 	            	 if (null != message) {
-	            		  System.out.println("consumerÊÕµ½ÏûÏ¢£º" + message.getText());
+	            		  System.out.println("consumerï¿½Õµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½" + message.getText());
 	                 } else {
 	                     break;
 	                 }
 	            }
-         		  session.commit();     //Ö»ÓÐsessionÖ´ÐÐcommitºó²ÅÄÜ³É¹¦Ïû·ÑÏûÏ¢
+         		  session.commit();     //Ö»ï¿½ï¿½sessionÖ´ï¿½ï¿½commitï¿½ï¿½ï¿½ï¿½Ü³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	        } catch (Exception e) {  
 	            e.printStackTrace();  
 	        } finally {  
