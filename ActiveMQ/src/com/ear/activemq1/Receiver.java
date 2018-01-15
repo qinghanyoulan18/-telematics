@@ -42,7 +42,7 @@ public class Receiver {
 	            	 if (null != message) {
 	            		  System.out.println("consumer�յ���Ϣ��" + message.getText());
 	                 } else {
-	                     break;
+	                     break;  
 	                 }
 	            }
          		  session.commit();     //ֻ��sessionִ��commit����ܳɹ������Ϣ
